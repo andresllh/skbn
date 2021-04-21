@@ -226,7 +226,7 @@ func (r readerWrapper) Read(p []byte) (int, error) {
 func Exec(client K8sClient, namespace, podName, containerName string, command []string, stdin io.Reader, stdout io.Writer) ([]byte, error) {
 	clientset, config := client.ClientSet, client.Config
 
-	req := clientset.Core().RESTClient().Post().
+	req := clientset.CoreV1().RESTClient().Post().
 		Resource("pods").
 		Name(podName).
 		Namespace(namespace).
