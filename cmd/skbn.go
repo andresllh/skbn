@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/gdhamilton/skbn/pkg/skbn"
+	"github.com/andresllh/skbn/pkg/skbn"
 
 	"github.com/spf13/cobra"
 )
