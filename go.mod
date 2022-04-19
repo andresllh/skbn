@@ -1,9 +1,10 @@
-module github.com/gdhamilton/skbn
+module github.com/andresllh/skbn
 
 go 1.16
 
 require (
 	cloud.google.com/go v0.54.0
+	cloud.google.com/go/storage v1.6.0 // indirect
 	git.apache.org/thrift.git v0.12.0 // indirect
 	github.com/Azure/azure-pipeline-go v0.1.8
 	github.com/Azure/azure-storage-blob-go v0.0.0-20181022225951-5152f14ace1c
