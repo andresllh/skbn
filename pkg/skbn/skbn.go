@@ -27,18 +27,22 @@ func Copy(src, dst string, parallel int, bufferSize float64) error {
 
 	err := TestImplementationsExist(srcPrefix, dstPrefix)
 	if err != nil {
+		fmt.Println("ERROR TestImplementationExist failed with: ", err)
 		return err
 	}
 	srcClient, dstClient, err := GetClients(srcPrefix, dstPrefix, srcPath, dstPath)
 	if err != nil {
+		fmt.Println("ERROR GetClients failed with: ", err)
 		return err
 	}
 	fromToPaths, err := GetFromToPaths(srcClient, srcPrefix, srcPath, dstPath)
 	if err != nil {
+		fmt.Println("ERROR GetFromToPaths failed with: ", err)
 		return err
 	}
 	err = PerformCopy(srcClient, dstClient, srcPrefix, dstPrefix, fromToPaths, parallel, bufferSize)
 	if err != nil {
+		fmt.Println("ERROR PerformCopy failed with: ", err)
 		return err
 	}
 
