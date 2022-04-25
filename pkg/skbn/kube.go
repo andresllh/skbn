@@ -64,7 +64,6 @@ func GetListOfFilesFromK8s(iClient interface{}, path, findType, findName string)
 	client := *iClient.(*K8sClient)
 	pSplit := strings.Split(path, "/")
 	if err := validateK8sPath(pSplit); err != nil {
-		fmt.Println("\n\nERROR failed to validate k8s path: ", err)
 		return nil, err
 	}
 	namespace, podName, containerName, findPath := initK8sVariables(pSplit)
@@ -79,7 +78,6 @@ func GetListOfFilesFromK8s(iClient interface{}, path, findType, findName string)
 		stderr, err := Exec(client, namespace, podName, containerName, command, nil, output)
 		if len(stderr) != 0 {
 			if attempt == attempts {
-				fmt.Println("\n\nERROR Failed to exec in GetListOfFilesFromK8s: ", stderr)
 				return nil, fmt.Errorf("STDERR: " + (string)(stderr))
 			}
 			utils.Sleep(attempt)

@@ -27,22 +27,22 @@ func Copy(src, dst string, parallel int, bufferSize float64) error {
 
 	err := TestImplementationsExist(srcPrefix, dstPrefix)
 	if err != nil {
-		fmt.Println("\n\nERROR TestImplementationExist failed with: ", err)
+		fmt.Println("ERROR TestImplementationExist failed with: ", err)
 		return err
 	}
 	srcClient, dstClient, err := GetClients(srcPrefix, dstPrefix, srcPath, dstPath)
 	if err != nil {
-		fmt.Println("\n\nERROR GetClients failed with: ", err)
+		fmt.Println("ERROR GetClients failed with: ", err)
 		return err
 	}
 	fromToPaths, err := GetFromToPaths(srcClient, srcPrefix, srcPath, dstPath)
 	if err != nil {
-		fmt.Println("\n\nERROR GetFromToPaths failed with: ", err)
+		fmt.Println("ERROR GetFromToPaths failed with: ", err)
 		return err
 	}
 	err = PerformCopy(srcClient, dstClient, srcPrefix, dstPrefix, fromToPaths, parallel, bufferSize)
 	if err != nil {
-		fmt.Println("\n\nERROR PerformCopy failed with: ", err)
+		fmt.Println("ERROR PerformCopy failed with: ", err)
 		return err
 	}
 
@@ -93,7 +93,6 @@ func GetClients(srcPrefix, dstPrefix, srcPath, dstPath string) (interface{}, int
 func GetFromToPaths(srcClient interface{}, srcPrefix, srcPath, dstPath string) ([]FromToPair, error) {
 	relativePaths, err := GetListOfFiles(srcClient, srcPrefix, srcPath)
 	if err != nil {
-		fmt.Println("\n\nERROR failed to obtain relativePaths: ", err)
 		return nil, err
 	}
 
@@ -195,7 +194,6 @@ func GetListOfFiles(client interface{}, prefix, path string) ([]string, error) {
 	case "k8s":
 		paths, err := GetListOfFilesFromK8s(client, path, "f", "*")
 		if err != nil {
-			fmt.Println("\n\nERROR failed to get list of files for kubernetes: ", err)
 			return nil, err
 		}
 		relativePaths = paths
